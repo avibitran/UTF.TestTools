@@ -1,0 +1,365 @@
+﻿.treeview ul,
+.treeview li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.treeview input {
+    position: absolute;
+    opacity: 0;
+}
+
+.treeview {
+    font: normal "Segoe UI", Arial, Sans-serif;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.treeview a {
+    color: rgb(0,0,255);
+    text-decoration: none;
+}
+/*
+.treeview a:hover {
+text-decoration: underline;
+}
+*/
+.treeview input + label + ul {
+    margin: 0 0 0 16px;
+}
+
+.treeview ul ul a {
+    margin: 0 0 0 10px;
+}
+
+.treeview input ~ ul {
+    display: none;
+}
+
+.treeview label,
+.treeview label::before,
+.treeview li>a {
+    cursor: pointer;
+}
+
+span#selectedItem,
+a#selectedItem {
+    background-color: rgb(176,216,255);
+}
+
+.treeview input:disabled + label {
+    cursor: default;
+    opacity: .6;
+}
+
+.treeview input:checked:not(:disabled) ~ ul {
+    display: block;
+}
+
+.treeview label,
+.treeview a,
+.treeview label::before {
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    padding-bottom: 2px;
+    vertical-align: middle;
+}
+    /*
+.treeview label {
+background-position: 18px 0;
+}
+*/
+
+.treeview label::before {
+    content: "+ ";
+    margin: 0 7px 0 0;
+    vertical-align: middle;
+    background-position: 0 -32px;
+}
+
+.treeview input[type=checkbox] {
+    object-position: left, bottom;
+    margin: 0px;
+}
+
+.treeview input:checked + label::before {
+    content: "\2012 ";
+    margin: 0 8px 0 0;
+    vertical-align: middle;
+    background-position: 0 -32px;
+}
+
+.treeview input[type=checkbox]:checked {
+    object-position: left, bottom;
+    margin: 0px;
+}
+
+header, footer {
+    padding: 16px;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+
+footer {
+    position: relative; /*static;*/
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 16px; /*3em;*/
+    text-align: center;
+    /*background-color: #efefef;*/
+}
+
+nav {
+    float: left;
+    /*max-width: 300px;*/ /*180px;*/
+    width: 300px;
+    margin: 0;
+    padding: 16px;
+    white-space: nowrap; /* Disable text wrap inside nav */
+    overflow-y: auto; /* Hide overflow text */
+    overflow-x: auto; /* add a scroll */
+    min-height: 82%;
+}
+
+article {
+    margin-left: 170px;
+    border-left: 1px solid black; /*gray*/
+    /*padding:  1em 1em 5.5em 1em; cue-before */
+    overflow: hidden;
+    font-size: 25px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    min-height: 82%;
+}
+
+p {
+    font-size: 15px;
+}
+
+.testStatus {
+    font-size: 25px;
+}
+
+.rTable {
+    display: table;
+    width: 150%;
+}
+
+.rTableRow {
+    display: table-row;
+}
+
+div.rTableCell {
+    display: table-cell;
+    padding: 3px 3px;
+    border: 1px solid #999999;
+    white-space: pre-line;
+    font-size: 18px;
+}
+
+a.rTableCell {
+    cursor: pointer;
+}
+
+.rTableHead {
+    display: table-cell;
+    padding: 3px 0px 3px 3px;
+    border: 1px solid #999999;
+    text-align: left;
+    /*font-size: 20px;*/
+    font-size: 20px;
+    font-weight: bold;
+}
+
+div#testSummary {
+    float: left;
+}
+
+div#testSummary p {
+    margin: 10px 5px 10px 5px 
+}
+
+div#testRunSummary {
+    float: left;
+}
+
+div#divTablePlaceholder {
+    overflow-x: auto;
+    /* float: */
+    min-width: 90%;
+}
+
+div.rTableCell > img {
+    width: 30px;
+    height: 20px;
+    border: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+.summaryTitle {
+    width: 100%;
+}
+
+.summaryData {
+    font-size: 18px;
+}
+
+.stepPass {
+    color: green;
+    font-weight: bold;
+}
+
+.stepDone {
+    color: black;
+    font-weight: bold;
+}
+
+.stepWarning {
+    color: orange;
+    font-weight: bold;
+}
+
+.stepFail {
+    color: red;
+    font-weight: bold;
+}
+
+.stepFatal {
+    color: #990000;
+    font-weight: bold;
+}
+
+.stepError {
+    color: #990000;
+    font-weight: bold;
+}
+
+div.rTableRow:hover div.rTableCell {
+    background-color: #E6E6FA;
+}
+
+.rTableHeading {
+    display: table-row;
+    background-color: #A8A8A8;
+    font-weight: bold;
+    height: initial;
+    align-content: flex-start;
+}
+
+.rTableFoot {
+    display: table-footer-group;
+    font-weight: bold;
+    background-color: #ddd;
+}
+
+.rTableBody {
+    display: table-row-group;
+}
+
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {
+    opacity: 0.7;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    /*max-width: 700px;*/
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+    font-weight:bold;
+    font-size:20px;
+}
+
+/* Add Animation */
+.modal-content {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {
+        -webkit-transform: scale(0);
+    }
+
+    to {
+        -webkit-transform: scale(1);
+    }
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+/* 100% Image Width on Smaller Screens
+    @media only screen and (max-width: 700px) {
+    .modal-content {
+    width: 100%;
+    }
+  }*/

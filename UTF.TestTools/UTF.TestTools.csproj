@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.props" Condition="Exists('..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E276840B-8528-4B98-BD36-723FC4CDEF01}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UTF.TestTools</RootNamespace>
+    <AssemblyName>UTF.TestTools</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTest.TestFramework.2.1.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTest.TestFramework.2.1.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BrowserTypeEnum.cs" />
+    <Compile Include="ClickOnce\ClickOnceAppInfo.cs" />
+    <Compile Include="ClickOnce\ClickOnceApplicationEnum.cs" />
+    <Compile Include="Collections\ComparerEx.cs" />
+    <Compile Include="Collections\DictionaryEnumerator.cs" />
+    <Compile Include="Collections\IOrderedDictionary.cs" />
+    <Compile Include="Collections\KeyedCollection.cs" />
+    <Compile Include="Collections\OrderedDictionary.cs" />
+    <Compile Include="Collections\TreeNode.cs" />
+    <Compile Include="ConfigurationManager.cs" />
+    <Compile Include="Converters\ArrayJsonConverter.cs" />
+    <Compile Include="Converters\CustomDateTimeConverter.cs" />
+    <Compile Include="Converters\EnumNameConverter.cs" />
+    <Compile Include="Converters\FlagsEnumConverter.cs" />
+    <Compile Include="Converters\HashSetJsonConverter.cs" />
+    <Compile Include="Converters\JsonClassEqualityComparer.cs" />
+    <Compile Include="Converters\NamedStringFormatter.cs" />
+    <Compile Include="Converters\StringKeyCollectionJsonConverter.cs" />
+    <Compile Include="Converters\XmlSerializableDictionary.cs" />
+    <Compile Include="DataRowExAttribute.cs" />
+    <Compile Include="EndpointBindingType.cs" />
+    <Compile Include="Extensions\AssertExtensions.cs" />
+    <Compile Include="ChannelFactoryExtension.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\JObjectExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="ITestClass.cs" />
+    <Compile Include="Monitoring\Monitor.cs" />
+    <Compile Include="Monitoring\MonitorManager.cs" />
+    <Compile Include="Monitoring\MonitorParams.cs" />
+    <Compile Include="Net\HttpWebClientProtocol.cs" />
+    <Compile Include="Net\RestDefaultHeaders.cs" />
+    <Compile Include="Net\RestServiceException.cs" />
+    <Compile Include="Net\RestWebClientProtocol.cs" />
+    <Compile Include="Net\SoapServiceException.cs" />
+    <Compile Include="Net\WebResponseMessage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporters\Attachment.cs" />
+    <Compile Include="Reporters\ClassObject.cs" />
+    <Compile Include="Reporters\ConsoleReporter.cs" />
+    <Compile Include="Reporters\HtmlReporter.cs" />
+    <Compile Include="Reporters\IReporter.cs" />
+    <Compile Include="Reporters\IReportService.cs" />
+    <Compile Include="Reporters\IVerificationOutcome.cs" />
+    <Compile Include="Reporters\LogSeverityEnum.cs" />
+    <Compile Include="Reporters\ReporterManager.cs" />
+    <Compile Include="Reporters\ReporterTypeEnum.cs" />
+    <Compile Include="Reporters\ReportEventTypeEnum.cs" />
+    <Compile Include="Reporters\SerializeReportAsEnum.cs" />
+    <Compile Include="Reporters\StatusChangedEventArgs.cs" />
+    <Compile Include="Reporters\StepAddedEventArgs.cs" />
+    <Compile Include="Reporters\StepInfo.cs" />
+    <Compile Include="Reporters\StepStatusEnum.cs" />
+    <Compile Include="Reporters\TestAddedEventArgs.cs" />
+    <Compile Include="Reporters\TestEndedEventArgs.cs" />
+    <Compile Include="Reporters\TestInfo.cs" />
+    <Compile Include="Reporters\TestObject.cs" />
+    <Compile Include="Reporters\TestRunSummary.cs" />
+    <Compile Include="Reporters\TestStatusChangedEventArgs.cs" />
+    <Compile Include="Reporters\TestStatusStats.cs" />
+    <Compile Include="Reporters\TestSummary.cs" />
+    <Compile Include="Reporters\VerificationPoint.cs" />
+    <Compile Include="Reporters\XmlReporter.cs" />
+    <Compile Include="StringSearchTypeEnum.cs" />
+    <Compile Include="TestCategories.cs" />
+    <Compile Include="TestClassAbstract.cs" />
+    <Compile Include="TestClassDescriptionAttribute.cs" />
+    <Compile Include="TestSystem.cs" />
+    <Compile Include="TimerInvoker.cs" />
+    <Compile Include="Timestamp.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Scripts\jquery-3.4.1.min.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\jquery-3.4.1.slim.min.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\jquery-3.4.1.intellisense.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\jquery-3.4.1.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\jquery-3.4.1.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\jquery-3.4.1.slim.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\jquery-3.4.1.slim.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\loader.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\main.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\main.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets'))" />
+  </Target>
+  <Import Project="..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.2.1.0\build\net45\MSTest.TestAdapter.targets')" />
+</Project>
