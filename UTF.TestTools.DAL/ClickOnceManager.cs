@@ -776,7 +776,7 @@ namespace System.Deployment.Application
     public class ApplicationManifest
     {
         #region Fields
-        private string _name;
+        //private string _name;
         private ApplicationIdentity _identity;
         private XDocument _manifest;
         private XDocument _deploymentManifest;
@@ -858,10 +858,10 @@ namespace System.Deployment.Application
             //set { _subscriptionIdentity = value; }
         }
 
-        public string Name
-        {
-            get { return _name; }
-        }
+        //public string Name
+        //{
+        //    get { return _name; }
+        //}
 
         public Uri Url
         {

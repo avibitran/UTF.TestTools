@@ -34,9 +34,10 @@ namespace UTF.TestTools
 
         public TestObject(TestObject test)
         {
-            this._fullName = test.FullName;
-            this._description = test.Description;
-            this._categories = test.Categories;
+            string[] categories = new string[] { };
+            this._fullName = String.Copy(test.FullName);
+            this._description = String.Copy(test.Description);
+            this._categories = test.Categories.ConvertAll<string>(i => String.Copy(i));
         }
         #endregion Ctor
 

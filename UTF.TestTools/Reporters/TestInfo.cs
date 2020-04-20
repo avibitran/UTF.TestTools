@@ -37,6 +37,31 @@ namespace UTF.TestTools
             return ToString(SerializeReportAsEnum.Xml);
         }
 
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+
+        public object DeepCopy()
+        {
+            return new TestInfo()
+            {
+                Iteration = this.Iteration,
+                Class = new ClassObject()
+                {
+                    FullName = String.Copy(this.Class.FullName),
+                    Description = String.Copy(this.Class.Description),
+                    Assembly = String.Copy(this.Class.Assembly),
+                },
+                Test = new TestObject()
+                {
+                    FullName = String.Copy(this.Test.FullName),
+                    Description = String.Copy(this.Test.Description),
+                    Categories = this.Test.Categories.ConvertAll<string>(i => String.Copy(i))
+                }
+            };
+        }
+
         public string ToString(SerializeReportAsEnum serializeAs)
         {
             StringBuilder stringBuilder = null;
@@ -302,10 +327,13 @@ namespace UTF.TestTools
                 ExtraInfo = step.ExtraInfo,
                 Messages = step.Messages,
                 Name = step.Name,
-                StartTime = step.StartTime,
+                StartTime = Timestamp.DateTimeToUnixTimestamp(DateTime.UtcNow),
                 Id = id, // Convert.ToString(this.Steps.Count + 1),
                 Section = $"{this.Section}/step[@id='{id}']", // $"{this.Section}/step[{this.Steps.Count + 1}]",
             };
+            if (String.IsNullOrEmpty(step.Name))
+                newStep.Name = GetStepName();
+
             newStep.StatusChanged += Step_StatusChanged;
             newStep.Outcome = step.Outcome;
 

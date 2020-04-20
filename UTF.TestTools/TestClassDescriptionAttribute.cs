@@ -24,7 +24,7 @@ namespace UTF.TestTools
 
         public override object TypeId
         {
-            get { return MethodBase.GetCurrentMethod().DeclaringType.Name; }//  "ATF.TestTools.TestClassDescriptionAttribute"; }
+            get { return MethodBase.GetCurrentMethod().DeclaringType.Name; }//  "UTF.TestTools.TestClassDescriptionAttribute"; }
         }
     }
 }

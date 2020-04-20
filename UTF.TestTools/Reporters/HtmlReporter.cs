@@ -33,6 +33,7 @@ namespace UTF.TestTools.Reporters
     {
         #region Fields
         #region Output Files params
+        public const string ResourcesDir = @"HtmlReporter_files";
         public static readonly string OutputXmlFile = "report.xml";
         public static readonly string OutputFileName = "report.html";
         public const string RELATIVE_OUTPUT_FOLDER = @"HtmlReporter";
@@ -44,7 +45,7 @@ namespace UTF.TestTools.Reporters
         private string _lastId = String.Empty;
         //private TreeNode<TestInfo> _testTree;
         //private TreeNode<TestInfo> _root;
-        private string _suiteName;
+        //private string _suiteName;
         private TestRunSummary _testsSummary;
 
         #endregion Fields
@@ -73,28 +74,8 @@ namespace UTF.TestTools.Reporters
         }
         
         #region IReporter interface implementation
-        public void Start(string outputPath)
-        {
-            string[] files = new string[] { };
-
-            files = Directory.GetFiles(outputPath, "*.js", SearchOption.AllDirectories);
-            foreach(string file in files)
-            {
-                if (Path.GetFileName(file).Equals("main.js"))
-                { File.Copy($"{file}", $"{this.OutputFolderPath}\\reporter_files\\main.js", true); continue; }
-                else if (Path.GetFileName(file).Equals("loader.js"))
-                { File.Copy($"{file}", $"{this.OutputFolderPath}\\reporter_files\\loader.js", true); continue; }
-                else if (Path.GetFileName(file).Equals("jquery-3.4.1.min.js"))
-                { File.Copy($"{file}", $"{this.OutputFolderPath}\\reporter_files\\jquery-3.4.1.min.js", true); continue; }
-            }
-
-            files = Directory.GetFiles(outputPath, "main.css", SearchOption.AllDirectories);
-            foreach (string file in files)
-            {
-                if (Path.GetFileName(file).Equals("main.css"))
-                { File.Copy($"{file}", $"{this.OutputFolderPath}\\reporter_files\\main.css", true); continue; }
-            }
-        }
+        public void Start()
+        { }
 
         public void Stop()
         { }
@@ -111,9 +92,28 @@ namespace UTF.TestTools.Reporters
         public void ReportStep(StepInfo stepInfo, string screenshotTitle = "", string screenshotFilePath = null)
         { }
 
-        public void GenerateReport(string inputFile)
+        public void GenerateReport(string testDeploymentDir, string inputFile)
         {
             string htmlFileFullPath = null;
+            string[] files = new string[] { };
+
+            files = Directory.GetFiles($"{testDeploymentDir}\\{ResourcesDir}", "*.js", SearchOption.AllDirectories);
+            foreach (string file in files)
+            {
+                if (Path.GetFileName(file).Equals("main.js"))
+                { File.Copy($"{file}", $"{this.OutputFolderPath}\\reporter_files\\main.js", true); continue; }
+                else if (Path.GetFileName(file).Equals("loader.js"))
+                { File.Copy($"{file}", $"{this.OutputFolderPath}\\reporter_files\\loader.js", true); continue; }
+                else if (Path.GetFileName(file).Equals("jquery-3.4.1.min.js"))
+                { File.Copy($"{file}", $"{this.OutputFolderPath}\\reporter_files\\jquery-3.4.1.min.js", true); continue; }
+            }
+
+            files = Directory.GetFiles(testDeploymentDir, "main.css", SearchOption.AllDirectories);
+            foreach (string file in files)
+            {
+                if (Path.GetFileName(file).Equals("main.css"))
+                { File.Copy($"{file}", $"{this.OutputFolderPath}\\reporter_files\\main.css", true); continue; }
+            }
 
             _xDoc = XDocument.Load(Path.Combine(this.OutputFolderPath, inputFile));
 

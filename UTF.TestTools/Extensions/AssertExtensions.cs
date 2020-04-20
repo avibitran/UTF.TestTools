@@ -25,7 +25,6 @@ namespace UTF.TestTools
         /// <param name="assert">The calling assert.</param>
         /// <param name="step">The <see cref="StepInfo"/> to report to.</param>
         /// <param name="actualState">The message to include as the actual result in the step, and in the exception.</param>
-        /// <exception cref="AssertFailedException">Thrown if <paramref name="continueOnError"/> is true.</exception>
         public static void ReportPass(this Assert assert, StepInfo step, string actualState)
         {
             if(actualState != null)
@@ -56,7 +55,25 @@ namespace UTF.TestTools
             }
 
             if(!continueOnError)
-                throw new AssertFailedException(actualState);
+            {
+                StringBuilder message = new StringBuilder();
+                StringBuilder numberedLines;
+
+                message.AppendLine(String.Format("STEP {0} [{1}]: Description = {2}", (String.IsNullOrEmpty(step.Name)) ? "" : step.Name, Timestamp.UnixTimestampToDateTime(step.StartTime).ToString(ConsoleReporter.TimeFormat), step.Description));
+
+                numberedLines = NormalizeListToString(step.Expected);
+                message.AppendLine($"Expected = {numberedLines.ToString()}");
+
+                numberedLines = NormalizeListToString(step.Actual);
+                message.AppendLine($"Actual = {numberedLines.ToString()}");
+
+                message.AppendLine(String.Format("Outcome = {0}", Enum.GetName(typeof(StepStatusEnum), step.Outcome)));
+                
+                numberedLines = NormalizeListToString(step.Messages);
+                message.AppendLine($"Messages: {numberedLines.ToString()}");
+                
+                throw new AssertFailedException(message.ToString());
+            }
         }
 
         /// <summary>
@@ -78,7 +95,25 @@ namespace UTF.TestTools
             }
 
             if (!continueOnError)
-                throw new AssertInconclusiveException(actualState);
+            {
+                StringBuilder message = new StringBuilder();
+                StringBuilder numberedLines;
+
+                message.AppendLine(String.Format("STEP {0} [{1}]: Description = {2}", (String.IsNullOrEmpty(step.Name)) ? "" : step.Name, Timestamp.UnixTimestampToDateTime(step.StartTime).ToString(ConsoleReporter.TimeFormat), step.Description));
+
+                numberedLines = NormalizeListToString(step.Expected);
+                message.AppendLine($"Expected = {numberedLines.ToString()}");
+
+                numberedLines = NormalizeListToString(step.Actual);
+                message.AppendLine($"Actual = {numberedLines.ToString()}");
+
+                message.AppendLine(String.Format("Outcome = {0}", Enum.GetName(typeof(StepStatusEnum), step.Outcome)));
+
+                numberedLines = NormalizeListToString(step.Messages);
+                message.AppendLine($"Messages: {numberedLines.ToString()}");
+
+                throw new AssertInconclusiveException(message.ToString());
+            }
         }
 
         /// <summary>
@@ -272,6 +307,34 @@ namespace UTF.TestTools
                 return null;
             }
         }
+
+        #region Private Methods
+        private static StringBuilder NormalizeListToString(List<string> list)
+        {
+            StringBuilder numberedLines;
+
+            numberedLines = new StringBuilder();
+            // More than 1 line
+            if (list.Count > 1)
+            {
+                for (int lineNumber = 1; lineNumber <= list.Count; lineNumber++)
+                {
+                    numberedLines.AppendLine(String.Empty);
+                    numberedLines.Append($"  {lineNumber}. {list[lineNumber - 1]}");
+                }
+            }
+            // 1 line
+            else if (list.Count == 1)
+            {
+                numberedLines.Append(list[0]);
+            }
+            // Zero lines
+            else
+                numberedLines.Append(String.Empty);
+
+            return numberedLines;
+        }
+        #endregion Private Methods
         #endregion Methods
 
         #region Properties

@@ -96,7 +96,7 @@ namespace UTF.TestTools
 
     /// <summary>
     /// holds the application's type: VMS, SA.<para/>
-    ///   if FromConfiguration is stated, the type is taken from the automation configuration under: configuration\applicationSettings\ATF.TestTools.Properties.Settings\setting[name='AUT']
+    ///   if FromConfiguration is stated, the type is taken from the automation configuration under: configuration\applicationSettings\UTF.TestTools.Properties.Settings\setting[name='AUT']
     /// </summary>
     [Flags]
     public enum ApplicationUnderTest
@@ -396,6 +396,11 @@ namespace UTF.TestTools
         {
             string connectionString = Configuration.GetConnectionString(connectionStringName);
             return String.Format(connectionString, args);
+        }
+
+        public static string ExecutingLocation
+        {
+            get { return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); }
         }
         #endregion Methods
 
@@ -713,7 +718,7 @@ namespace UTF.TestTools
             #region Private Methods
             private System.Configuration.ClientSettingsSection GetServicesSettingsSection()
             {
-                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["ATF.TestTools.Services"];
+                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["UTF.TestTools.Services"];
             }
 
             private System.Configuration.ConfigurationSectionGroup GetSectionGroup(string sectionGroupName)
@@ -728,32 +733,32 @@ namespace UTF.TestTools
 
             private System.Configuration.ClientSettingsSection GetUnitTestFrameworkSettingsSection()
             {
-                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["ATF.TestTools.UnitTestFramework.Properties.Settings"];
+                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["UTF.TestTools.UnitTestFramework.Properties.Settings"];
             }
 
             private System.Configuration.ClientSettingsSection GetLoadTestFrameworkSettingsSection()
             {
-                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["ATF.TestTools.LoadTestFramework.Properties.Settings"];
+                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["UTF.TestTools.LoadTestFramework.Properties.Settings"];
             }
 
             private System.Configuration.ClientSettingsSection GetGeneralSettingsSection()
             {
-                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["ATF.TestTools.Properties.Settings"];
+                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["UTF.TestTools.Properties.Settings"];
             }
 
             private System.Configuration.ClientSettingsSection GetGuiTestSettingsSection()
             {
-                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["ATF.TestTools.GuiTest.Properties.Settings"];
+                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["UTF.TestTools.GuiTest.Properties.Settings"];
             }
 
             private System.Configuration.ClientSettingsSection GetVmsSettingsSection()
             {
-                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["ATF.TestTools.VMS.Properties.Settings"];
+                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["UTF.TestTools.VMS.Properties.Settings"];
             }
 
             private System.Configuration.ClientSettingsSection GetSaSettingsSection()
             {
-                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["ATF.TestTools.SA.Properties.Settings"];
+                return (System.Configuration.ClientSettingsSection)GetSectionGroup("applicationSettings").Sections["UTF.TestTools.SA.Properties.Settings"];
             }
 
             private System.ServiceModel.Configuration.ServiceModelSectionGroup GetServiceModelSection()

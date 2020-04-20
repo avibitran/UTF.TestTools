@@ -11,9 +11,8 @@ using UTF.TestTools.Reporters;
 
 namespace UTF.TestTools
 {
-    [TestClass]
-    [DeploymentItem("ATF.TestTools.xml")]
-    [DeploymentItem(".\\Scripts", @"Scripts")]
+    [DeploymentItem("UTF.TestTools.xml")]
+    [DeploymentItem(".\\Scripts", HtmlReporter.ResourcesDir)]
     public abstract class TestClassAbstract
         : ITestClass
     {
@@ -195,29 +194,14 @@ namespace UTF.TestTools
 
         public static void InitializeAssembly(TestContext testContext)
         {
-            // Every env. has a different name for the VMS DB (Verint2012, Verint2016) instance name.
-            // so for every env there is a runsettings that holds the value for it (= VmsDbInstanceName).
-            // If VMS DB Instance name value exists in the runsettings, copy it to the ATF.TestTools.xml, so that every test will be able to use it.
-            if (testContext.Properties.Contains("VmsDbInstanceName"))
-                ConfigurationManager.SetProperty(TestFramework.VMS, "VmsDbInstanceName", testContext.Properties["VmsDbInstanceName"]);
-
-            // Every env. has a different name for the VMS DB (Verint2012, Verint2016) instance name.
-            // so for every env there is a runsettings that holds the value for it (= VmsDbInstanceName).
-            // If VMS DB Instance name value exists in the runsettings, copy it to the ATF.TestTools.xml, so that every test will be able to use it.
-            if (testContext.Properties.Contains("VmsDbName"))
-                ConfigurationManager.SetProperty(TestFramework.VMS, "VmsDbName", testContext.Properties["VmsDbName"]);
-
-            // For every env. the VMS is installed in a different path, so the path to the assemblies we need to run the VideoControl are changing. 
-            // so for every env there is a runsettings that holds the value for it (= Vms_AppBase).
-            // If VMS installed path value exists in the runsettings, copy it to the ATF.TestTools.xml, so that every test will be able to use it.
-            if (testContext.Properties.Contains("Vms_AppBase"))
-                ConfigurationManager.SetProperty(TestFramework.VMS, "Vms_AppBase", testContext.Properties["Vms_AppBase"]);
-
             // Copying the TestDeploymentDir to the ATF.TestTools.xml, so that every test will be able to use it.
             ConfigurationManager.SetProperty(TestFramework.General, "TestDeploymentDir", testContext.TestDeploymentDir);
 
-            if (Report == null)
-                Report = ReporterManager.AttachReporters(Path.GetFileName(testContext.TestRunDirectory), ReporterTypeEnum.ConsoleReporter | ReporterTypeEnum.HtmlReporter);
+            //if (Report == null)
+            //    Report = ReporterManager.AttachReporters(Path.GetFileName(testContext.TestRunDirectory), ReporterTypeEnum.ConsoleReporter | ReporterTypeEnum.HtmlReporter);
+
+            if (Report != null)
+                Report.SetReportTitle(Path.GetFileName(testContext.TestRunDirectory));
         }
 
         public static void CleanupAssembly()
@@ -225,7 +209,7 @@ namespace UTF.TestTools
             if (Report != null)
             {
                 Report.Stop();
-                Report.GenerateReport();
+                Report.GenerateReport(ConfigurationManager.GetProperty(TestFramework.General, "TestDeploymentDir"));
             }
         }
 
@@ -336,8 +320,8 @@ namespace UTF.TestTools
         private static ReporterManager _reporter;
         public static ReporterManager Report
         {
-            get { return _reporter; }
-            protected set { _reporter = value; }
+            get { return ReporterManager.Get(); }
+            //protected set { _reporter = value; }
         }
         #endregion Properties
     }

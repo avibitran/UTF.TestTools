@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="UTF.TestTools.Services" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+      <section name="UTF.TestTools.Properties.Settings"  type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+      <section name="UTF.TestTools.VMS.Properties.Settings"  type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+      <section name="UTF.TestTools.SA.Properties.Settings"  type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+      <section name="UTF.TestTools.LoadTestFramework.Properties.Settings"  type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+      <section name="UTF.TestTools.UnitTestFramework.Properties.Settings"  type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+      <section name="UTF.TestTools.GuiTestFramework.Properties.Settings"  type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+      <section name="UTF.TestTools.TestAnalyzer.Properties.Settings"  type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+    </sectionGroup>
+    <section name="Microsoft.VisualStudio.TestTools"
+      type="Microsoft.VisualStudio.TestTools.UnitTesting.TestConfigurationSection, Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+  </configSections>
+  <connectionStrings>
+    <add name="adminTCConnectionString"
+        connectionString="Data Source={0}; User ID=dbs; Password=dbssql" providerName="System.Data.SqlClient" />
+    <add name="adminDCConnectionString"
+        connectionString="Data Source={0}; User ID=dbs; Password=dbssql; Location=merit" providerName="System.Data.OleDb" />
+    <!--<add name="LoginTestsConnectionString"
+        connectionString="Dsn=Excel Files;dbq=C:/Developement/UTF.TestTools/UTF.TestTools.GUITestFramework/Datasource/LoginTests.xlsx;defaultdir=.; driverid=790;maxbuffersize=2048;pagetimeout=5" providerName="System.Data.Odbc" />-->
+    <add name="GreenPlumConnectionString"
+         connectionString="Server={0};Port=5432;Database=merit;Uid=gpadmin;Pwd=changeme;"  providerName="Npgsql"/>
+    <!--        connectionString="Server={0};Password=changeme;User ID=gpadmin;" providerName="Npgsql"/>-->
+    <!--<  connectionString="Server={0};Password=changeme;User ID=gpadmin;Location=merit;" providerName="Npgsql" />-->
+    <add name="HiveConnectionString"
+       connectionString="Driver={{Microsoft Hive ODBC Driver}};hiveservertype=2;host={0};port={1};uid=hive;pwd=hive;schema=default;sockettimeout=60;applysspwithqueries=1;asyncexecpollinterval=100;authmech=2;autoreconnect=1;binarycolumnlength=32767;decimalcolumnscale=10;defaultstringcolumnlength=255;driverconfigtakeprecedence=0;enableasyncexec=0;enabletemptable=0;fastsqlprepare=0;gettableswithquery=1;invalidsessionautorecover=1;lcasesspkeyname=1;rowsfetchedperblock=10000;servicediscoverymode=0;showsystemtable=0;ssl=0;usenativequery=0;useonlysspi=0;useunicodesqlcharactertypes=0"
+       providerName=".NET Framework Data Provider for ODBC"/>
+    <add name="VmsDB"
+      connectionString="Data Source={0}\{1};Initial Catalog={2};Persist Security Info=True;User ID=sa;Password=TheSpiritOfVerint2007!"
+      providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <applicationSettings>
+    <UTF.TestTools.Services>
+      <setting name="NextivaSite" serializeAs="String">
+        <value>{2}://{0}:{1}</value>
+      </setting>
+      <setting name="BasicHttpBinding_IService" serializeAs="String">
+        <value>http://{0}:{1}/NextivaWS/Service/</value>
+      </setting>
+      <setting name="BasicHttpBinding_IConfigurationService" serializeAs="String">
+        <value>http://{0}:{1}/NextivaWS/Configuration/</value>
+      </setting>
+      <setting name="BasicHttpBinding_IDiagnosticsService" serializeAs="String">
+        <value>http://{0}:{1}/NextivaWS/Diagnostics/</value>
+      </setting>
+      <setting name="NetTcpBinding_IPlayerTestAnalyserServices" serializeAs="String">
+        <value>net.tcp://{0}:{1}/Design_Time_Addresses/PlayerTestAnalyser/Service/PlayerTestAnalyser/</value>
+      </setting>
+      <setting name="BasicHttpBinding_IMediaManagementService" serializeAs="String">
+        <value>http://{0}:{1}/NextivaWS/MediaManagement/</value>
+      </setting>
+      <setting name="VerintSmcDownloadPage" serializeAs="String">
+        <value>{2}://{0}:{1}/VerintSMC/</value>
+      </setting>
+      <setting name="VerintSmcValidatorClickOnceUrl" serializeAs="String">
+        <value>{2}://{0}:{1}/VerintSMC/VerintSMC.application</value>
+      </setting>
+      <setting name="VerintSmcClickOnceUrl" serializeAs="String">
+        <value>{2}://{0}:{1}/VerintSMC/VerintSMCapp.application</value>
+      </setting>
+      <setting name="VmsReviewDownloadPage" serializeAs="String">
+        <value>{2}://{0}:{1}/verint/review/review.html</value>
+      </setting>
+      <setting name="VmsReviewClickOnceUrl" serializeAs="String">
+        <value>{2}://{0}:{1}/verint/review/review.application</value>
+      </setting>
+      <setting name="VideoAnalyzerService" serializeAs="String">
+        <value>{2}://{0}:{1}/Design_Time_Addresses/PlayerTestAnalyser/Service/PlayerTestAnalyser</value>
+      </setting>
+      <!-- START: The SA WCF Services -->
+      <setting name="BasicHttpBinding_IAuthentication" serializeAs="String">
+        <value>http://{0}:{1}/Authentication.svc</value>
+      </setting>
+      <setting name="BasicHttpBinding_IServerInformation" serializeAs="String">
+        <value>http://{0}:{1}/ServerInformation.svc</value>
+      </setting>
+      <setting name="BasicHttpBinding_IUserManagement" serializeAs="String">
+        <value>http://{0}:{1}/UserManagement.svc</value>
+      </setting>
+      <!--setting name="SA_SystemManagementService" serializeAs="String">
+        <value>{2}://{0}:{1}/SystemManagement.svc</value>
+      </setting>
+      <setting name="SA_DeviceManagementService" serializeAs="String">
+        <value>{2}://{0}:{1}/DeviceManagement.svc</value>
+      </setting>
+      <setting name="SA_IncidentAdministrationService" serializeAs="String">
+        <value>{2}://{0}:{1}/IncidentAdministration.svc</value>
+      </setting>
+      <setting name="SA_RuleEngineAdministrationService" serializeAs="String">
+        <value>{2}://{0}:{1}/RuleEngineAdministration.svc</value>
+      </setting>
+      <setting name="SA_IncidentManagementService" serializeAs="String">
+        <value>{2}://{0}:{1}/IncidentManagement.svc</value>
+      </setting>
+      <setting name="SA_ServerManagementService" serializeAs="String">
+        <value>{2}://{0}:{1}/ServerManagement.svc</value>
+      </setting>
+      <setting name="SA_EdgeServerInformationService" serializeAs="String">
+        <value>{2}://{0}:{1}/EdgeServerInformation.svc</value>
+      </setting>
+      <setting name="SA_SSAServerInformationService" serializeAs="String">
+        <value>{2}://{0}:{1}/SSAServerInformation.svc</value>
+      </setting>
+      <setting name="SA_MapManagementService" serializeAs="String">
+        <value>{2}://{0}:{1}/MapManagement.svc</value>
+      </setting>
+      <setting name="SA_UserManagementService" serializeAs="String">
+        <value>{2}://{0}:{1}/UserManagement.svc</value>
+      </setting>
+      <setting name="SA_EdgeServerInformationService" serializeAs="String">
+        <value>{2}://{0}:{1}/EdgeServerInformation.svc</value>
+      </setting>
+      <setting name="SA_SSAManagementService" serializeAs="String">
+        <value>{2}://{0}:{1}/SSAManagement.svc</value>
+      </setting-->
+      <!-- END: The SA WCF Services -->
+    </UTF.TestTools.Services>
+    <UTF.TestTools.Properties.Settings>
+      <setting name="VmsSdkUrlScheme" serializeAs="String">
+        <value>tcp</value>
+      </setting>
+      <setting name="VmsServicesScheme" serializeAs="String">
+        <value>http</value>
+      </setting>
+      <setting name="VmsNetTcpServicesScheme" serializeAs="String">
+        <value>net.tcp</value>
+      </setting>
+      <setting name="VerintSmcUrlScheme" serializeAs="String">
+        <value>http</value>
+      </setting>
+      <setting name="VmsReviewUrlScheme" serializeAs="String">
+        <value>http</value>
+      </setting>
+      <setting name="VideoAnalyzerScheme" serializeAs="String">
+        <value>http</value>
+      </setting>
+      <setting name="SA_WcfServicesScheme" serializeAs="String">
+        <value>http</value>
+      </setting>
+      <setting name="TestDeploymentDir" serializeAs="String">
+        <!-- This value is copied from the runsettings. -->
+        <value></value>
+      </setting>
+      <setting name="System01" serializeAs="String">
+        <value>
+          {
+          name: 'System01',
+          id: 1,
+          machines: [
+          {
+          id: 1,
+          systemId: 1,
+          type: ['SA'],
+          host: 'APPSERVER',
+          description: 'SA Machine',
+          controller: -1
+          }, {
+          id: 2,
+          systemId: 1,
+          type: ['MultiSite'],
+          host: 'NEXTIVA-MSS',
+          description: 'MSS Machine',
+          controller: -1,
+          }, {
+          id: 3,
+          systemId: 1,
+          type: ['Master', 'Recorder'],
+          host: 'NEXTIVASERVER',
+          description: 'VMS Master-Recorder Machine',
+          controller: -1
+          }, {
+          id: 4,
+          systemId: 1,
+          type: ['Recorder'],
+          host: 'NEXTIVA-REC1',
+          description: 'Recorder Machine',
+          controller: 3,
+          }, {
+          id: 5,
+          systemId: 1,
+          type: ['Recorder'],
+          host: 'NEXTIVA-REC2',
+          description: 'Recorder Machine',
+          controller: 3,
+          }, {
+          id: 6,
+          systemId: 1,
+          type: ['Hdr'],
+          host: 'NEXTIVA-HDR1',
+          description: 'HDR Machine',
+          controller: 3,
+          }
+          ]
+          }
+        </value>
+      </setting>
+      <setting name="System02" serializeAs="String">
+        <value>
+          {
+          name: 'System02',
+          id: 2,
+          machines: [
+          {
+          id: 1,
+          systemId: 2,
+          type: ['SA'],
+          host: 'APPSERVER',
+          description: 'SA Machine',
+          controller: -1
+          }, {
+          id: 2,
+          systemId: 2,
+          type: ['MultiSite'],
+          host: 'NEXTIVA-MSS',
+          description: 'MSS Machine',
+          controller: -1,
+          }, {
+          id: 3,
+          systemId: 2,
+          type: ['Master'],
+          host: 'NEXTIVASERVER2',
+          description: 'VMS Master Machine',
+          controller: -1
+          }, {
+          id: 4,
+          systemId: 2,
+          type: ['Recorder'],
+          host: 'NEXTIVA2-REC1',
+          description: 'Recorder Machine',
+          controller: 3,
+          }, {
+          id: 5,
+          systemId: 2,
+          type: ['Recorder'],
+          host: 'NEXTIVA2-REC2',
+          description: 'Recorder Machine',
+          controller: 3,
+          }, {
+          id: 6,
+          systemId: 2,
+          type: ['Hdr'],
+          host: 'NEXTIVA-HDR1',
+          description: 'HDR Machine',
+          controller: 3,
+          }
+          ]
+          }
+        </value>
+      </setting>
+      <setting name="Machine_Admin" serializeAs="String">
+        <value>.\Administrator</value>
+      </setting>
+      <setting name="Machine_Password" serializeAs="String">
+        <value>Verint1!</value>
+      </setting>
+      <setting name="AUT" serializeAs="String">
+        <!-- values can be: VMS, SA -->
+        <value>VMS</value>
+        <!--<value>SA</value>-->
+      </setting>
+    </UTF.TestTools.Properties.Settings>
+    <UTF.TestTools.VMS.Properties.Settings>
+      
+    </UTF.TestTools.VMS.Properties.Settings>
+    <UTF.TestTools.SA.Properties.Settings>
+      
+    </UTF.TestTools.SA.Properties.Settings>
+    <UTF.TestTools.LoadTestFramework.Properties.Settings>
+    </UTF.TestTools.LoadTestFramework.Properties.Settings>
+    <UTF.TestTools.UnitTestFramework.Properties.Settings>
+    </UTF.TestTools.UnitTestFramework.Properties.Settings>
+    <UTF.TestTools.GuiTestFramework.Properties.Settings>
+    </UTF.TestTools.GuiTestFramework.Properties.Settings>
+  </applicationSettings>
+  <Microsoft.VisualStudio.TestTools>
+    <dataSources>
+      <add name="LoginTestsDS"
+      connectionString="LoginTestsConnectionString"
+      dataTableName="LoginTest$"
+      dataAccessMethod="Sequential"/>
+    </dataSources>
+  </Microsoft.VisualStudio.TestTools>
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="BasicHttpBinding_IService" closeTimeout="00:01:00" openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                 allowCookies="false" bypassProxyOnLocal="false" hostNameComparisonMode="StrongWildcard"
+                 maxBufferPoolSize="524288" maxBufferSize="4000000" maxReceivedMessageSize="4000000"
+                 textEncoding="utf-8" transferMode="Buffered" useDefaultWebProxy="true" messageEncoding="Text">
+          <readerQuotas maxDepth="32" maxStringContentLength="8192" maxArrayLength="16384" maxBytesPerRead="4096" maxNameTableCharCount="16384"/>
+          <security mode="None">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm=""/>
+            <message clientCredentialType="UserName" algorithmSuite="Default"/>
+          </security>
+        </binding>
+        <binding name="BasicHttpBinding_IConfigurationService"
+                 closeTimeout="00:01:00" openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                 allowCookies="false" bypassProxyOnLocal="false" hostNameComparisonMode="StrongWildcard"
+                 maxBufferPoolSize="524288" maxBufferSize="4000000" maxReceivedMessageSize="4000000"
+                 textEncoding="utf-8" transferMode="Buffered" useDefaultWebProxy="true" messageEncoding="Text" />
+        <binding name="BasicHttpBinding_IDiagnosticsService"
+                 closeTimeout="00:01:00" openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                 allowCookies="false" bypassProxyOnLocal="false" hostNameComparisonMode="StrongWildcard"
+                 maxBufferPoolSize="524288" maxBufferSize="4000000" maxReceivedMessageSize="4000000"
+                 textEncoding="utf-8" transferMode="Buffered" useDefaultWebProxy="true" messageEncoding="Text" />
+        <binding name="BasicHttpBinding_IMediaManagementService"
+                 closeTimeout="00:01:00" openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                 allowCookies="false" bypassProxyOnLocal="false" hostNameComparisonMode="StrongWildcard"
+                 maxBufferPoolSize="524288" maxBufferSize="4000000" maxReceivedMessageSize="4000000"
+                 textEncoding="utf-8" transferMode="Buffered" useDefaultWebProxy="true" messageEncoding="Text" />
+        <binding name="BasicHttpBinding" maxBufferSize="2147483647" maxBufferPoolSize="524288" maxReceivedMessageSize="2147483647"
+                 receiveTimeout="00:05:00" sendTimeout="00:00:36">
+          <security mode="None">
+            <transport clientCredentialType="None" />
+          </security>
+        </binding>
+      </basicHttpBinding>
+      <netTcpBinding>
+        <binding name="NetTcpBinding">
+          <security mode="None" />
+        </binding>
+        <binding name="NetTcpBinding_IPlayerTestAnalyserServices" closeTimeout="00:10:00"
+            openTimeout="00:10:00" receiveTimeout="00:10:00" sendTimeout="00:10:00"
+            maxBufferPoolSize="524288" maxReceivedMessageSize="1000000">
+          <security mode="None">
+            <transport sslProtocols="None" />
+          </security>
+        </binding>
+      </netTcpBinding>
+    </bindings>
+    <!--<behaviors>
+      <serviceBehaviors>
+        <behavior name="BehaviorServiceHttp">
+          <serviceMetadata httpGetEnabled="True" />
+          -->
+    <!-- To receive exception details in faults for debugging purposes, set the value below to true.  Set to false before deployment to avoid disclosing exception information -->
+    <!--
+          <serviceDebug includeExceptionDetailInFaults="True" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>-->
+    <client>
+      <!-- endpoint to the NextivaWS using BasicHttpBinding -->
+      <endpoint name="BasicHttpBinding_IService" binding="basicHttpBinding"
+          bindingConfiguration="BasicHttpBinding_IService" contract="NextivaWS.IService" />
+      <!-- endpoint to the NextivaWS ConfigurationService using NetTcpBinding -->
+      <endpoint name="BasicHttpBinding_IConfigurationService" binding="basicHttpBinding"
+          bindingConfiguration="BasicHttpBinding_IConfigurationService" contract="NextivaWS.IConfigurationService" />
+      <!-- endpoint to the NextivaWS MediaManagementService using NetTcpBinding -->
+      <endpoint name="BasicHttpBinding_IMediaManagementService" binding="basicHttpBinding"
+          bindingConfiguration="BasicHttpBinding_IMediaManagementService" contract="NextivaWS.IDiagnosticsService" />
+      <!-- endpoint to the NextivaWS DiagnosticsService using basicHttpBinding -->
+      <endpoint name="BasicHttpBinding_IDiagnosticsService" binding="basicHttpBinding"
+          bindingConfiguration="BasicHttpBinding_IDiagnosticsService" contract="NextivaWS.IMediaManagementService" />
+      <!-- endpoint to the SA IAuthentication service -->
+      <endpoint name="BasicHttpBinding_IAuthentication" binding="basicHttpBinding"
+          bindingConfiguration="BasicHttpBinding" contract="Verint.DC.WCF.ClientStubs.IAuthentication" />
+      <!-- endpoint to the SA IAuthentication service -->
+      <endpoint name="BasicHttpBinding_IServerInformation" binding="basicHttpBinding"
+          bindingConfiguration="BasicHttpBinding" contract="Verint.DC.WCF.ClientStubs.IServerInformation" />
+      <!-- endpoint to the SA IAuthentication service -->
+      <endpoint name="BasicHttpBinding_IUserManagement" binding="basicHttpBinding"
+          bindingConfiguration="BasicHttpBinding" contract="Verint.DC.WCF.ClientStubs.IUserManagement" />
+      <!-- enfpoint to the PlayerTestAnalyser service using netTcpBinding -->
+      <endpoint name="NetTcpBinding_IPlayerTestAnalyserServices"
+          binding="netTcpBinding" bindingConfiguration="NetTcpBinding_IPlayerTestAnalyserServices"
+          contract="UTF.TestTools.DAL.VideoAnalyzerService.IPlayerTestAnalyserServices" />
+    </client>
+  </system.serviceModel>
+</configuration>

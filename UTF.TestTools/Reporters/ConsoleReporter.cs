@@ -28,7 +28,7 @@ namespace UTF.TestTools.Reporters
 
         #region Methods
         #region IReportService interface Implementation
-        public void GenerateReport(string inputFile)
+        public void GenerateReport(string testDeploymentDir, string inputFile)
         { }
 
         public void ReportStep(StepInfo step, string screenshotTitle = "", string screenshotFilePath = null)
@@ -142,7 +142,7 @@ namespace UTF.TestTools.Reporters
             Logger.LogMessage(message.ToString());
         }
 
-        public void Start(string outputPath)
+        public void Start()
         { }
 
         public void Stop()

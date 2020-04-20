@@ -8,7 +8,7 @@ namespace UTF.TestTools.Reporters
         /// <summary>
         ///     The method to initialize the reporter
         /// </summary>
-        void Start(string outputPath);
+        void Start();
 
         /// <summary>
         ///     The method to terminate the reporter
@@ -40,11 +40,13 @@ namespace UTF.TestTools.Reporters
         /// <param name="screenshotTitle">The title of the screenshot</param>
         /// <param name="screenshotFilePath">The path to the screenshot file</param>
         void ReportStep(StepInfo step, string screenshotTitle = "", string screenshotFilePath = null);
-        
+
         /// <summary>
-        ///     The method called when generating the report of the reporter
+        /// The method called when generating the report of the reporter
         /// </summary>
-        void GenerateReport(string inputFile);
+        /// <param name="testDeploymentDir">The path to the deployment directory of the run</param>
+        /// <param name="inputFile">the name of the test run xml report (default: report.xml)</param>
+        void GenerateReport(string testDeploymentDir, string inputFile);
 
         string OutputFolderPath { get; }
 

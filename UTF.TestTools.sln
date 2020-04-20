@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTF.TestTools", "UTF.TestTo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTF.TestTools.DAL", "UTF.TestTools.DAL\UTF.TestTools.DAL.csproj", "{AB8911E9-7FDC-49EA-AD83-6B14B12539A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTF.TestTools.UITesting", "UTF.TestTools.UITesting\UTF.TestTools.UITesting.csproj", "{69F071AE-CDD6-4195-AEBE-9CC8CF12E010}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTF.TestTools.Testing", "UTF.TestTools.Testing\UTF.TestTools.Testing.csproj", "{375CFF10-019E-46DA-A9C2-2A966773F8CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{AB8911E9-7FDC-49EA-AD83-6B14B12539A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB8911E9-7FDC-49EA-AD83-6B14B12539A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB8911E9-7FDC-49EA-AD83-6B14B12539A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69F071AE-CDD6-4195-AEBE-9CC8CF12E010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69F071AE-CDD6-4195-AEBE-9CC8CF12E010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69F071AE-CDD6-4195-AEBE-9CC8CF12E010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69F071AE-CDD6-4195-AEBE-9CC8CF12E010}.Release|Any CPU.Build.0 = Release|Any CPU
+		{375CFF10-019E-46DA-A9C2-2A966773F8CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{375CFF10-019E-46DA-A9C2-2A966773F8CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{375CFF10-019E-46DA-A9C2-2A966773F8CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{375CFF10-019E-46DA-A9C2-2A966773F8CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

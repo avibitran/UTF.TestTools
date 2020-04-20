@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\.nuget\packages\mstest.testadapter\2.1.0\build\_common\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.2.1.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -79,6 +83,9 @@
     <Compile Include="Converters\XmlSerializableDictionary.cs" />
     <Compile Include="DataRowExAttribute.cs" />
     <Compile Include="EndpointBindingType.cs" />
+    <Compile Include="Extensibility\DataTestMethodExAttribute.cs" />
+    <Compile Include="Extensibility\TestClassExAttribute.cs" />
+    <Compile Include="Extensibility\TestMethodExAttribute.cs" />
     <Compile Include="Extensions\AssertExtensions.cs" />
     <Compile Include="ChannelFactoryExtension.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
@@ -96,6 +103,7 @@
     <Compile Include="Net\SoapServiceException.cs" />
     <Compile Include="Net\WebResponseMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporters\AbstractReportService.cs" />
     <Compile Include="Reporters\Attachment.cs" />
     <Compile Include="Reporters\ClassObject.cs" />
     <Compile Include="Reporters\ConsoleReporter.cs" />
@@ -104,9 +112,11 @@
     <Compile Include="Reporters\IReportService.cs" />
     <Compile Include="Reporters\IVerificationOutcome.cs" />
     <Compile Include="Reporters\LogSeverityEnum.cs" />
+    <Compile Include="Reporters\ReporterAttribute.cs" />
     <Compile Include="Reporters\ReporterManager.cs" />
     <Compile Include="Reporters\ReporterTypeEnum.cs" />
     <Compile Include="Reporters\ReportEventTypeEnum.cs" />
+    <Compile Include="Reporters\ReportServiceHandler.cs" />
     <Compile Include="Reporters\SerializeReportAsEnum.cs" />
     <Compile Include="Reporters\StatusChangedEventArgs.cs" />
     <Compile Include="Reporters\StepAddedEventArgs.cs" />
@@ -130,7 +140,11 @@
     <Compile Include="TimerInvoker.cs" />
     <Compile Include="Timestamp.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="UTF.TestTools.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Scripts\jquery-3.4.1.min.map">
