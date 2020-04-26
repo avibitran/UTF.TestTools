@@ -11,25 +11,28 @@
       <section name="UTF.TestTools.GuiTestFramework.Properties.Settings"  type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
       <section name="UTF.TestTools.TestAnalyzer.Properties.Settings"  type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
     </sectionGroup>
-    <section name="Microsoft.VisualStudio.TestTools"
-      type="Microsoft.VisualStudio.TestTools.UnitTesting.TestConfigurationSection, Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+    <section name="Microsoft.VisualStudio.TestTools" type="Microsoft.VisualStudio.TestTools.UnitTesting.TestConfigurationSection, Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
   </configSections>
   <connectionStrings>
     <add name="adminTCConnectionString"
-        connectionString="Data Source={0}; User ID=dbs; Password=dbssql" providerName="System.Data.SqlClient" />
+        connectionString="Data Source={0}; User ID=; Password=" providerName="System.Data.SqlClient" />
     <add name="adminDCConnectionString"
-        connectionString="Data Source={0}; User ID=dbs; Password=dbssql; Location=merit" providerName="System.Data.OleDb" />
+        connectionString="Data Source={0}; User ID=; Password=; Location=merit" providerName="System.Data.OleDb" />
     <!--<add name="LoginTestsConnectionString"
-        connectionString="Dsn=Excel Files;dbq=C:/Developement/UTF.TestTools/UTF.TestTools.GUITestFramework/Datasource/LoginTests.xlsx;defaultdir=.; driverid=790;maxbuffersize=2048;pagetimeout=5" providerName="System.Data.Odbc" />-->
+        connectionString="Dsn=Excel Files;dbq=C:/LoginTests.xlsx;defaultdir=.; driverid=790;maxbuffersize=2048;pagetimeout=5" providerName="System.Data.Odbc" />-->
+    <!--<add name="LoginTestsConnectionString"
+        connectionString="Driver={Microsoft Excel Driver (*.xls)}; Dbq=C:\LoginTests.xlsx; Extensions=xls/xlsx;" providerName="System.Data.Odbc" />-->
+    <add name="LoginTestsConnectionString"
+        connectionString="Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\LoginTests.xlsx; Extended Properties='Excel 12.0 Xml;HDR=YES';" providerName="System.Data.OleDb" />
     <add name="GreenPlumConnectionString"
-         connectionString="Server={0};Port=5432;Database=merit;Uid=gpadmin;Pwd=changeme;"  providerName="Npgsql"/>
+         connectionString="Server={0};Port=5432;Database=merit;Uid=;Pwd=;"  providerName="Npgsql"/>
     <!--        connectionString="Server={0};Password=changeme;User ID=gpadmin;" providerName="Npgsql"/>-->
     <!--<  connectionString="Server={0};Password=changeme;User ID=gpadmin;Location=merit;" providerName="Npgsql" />-->
     <add name="HiveConnectionString"
-       connectionString="Driver={{Microsoft Hive ODBC Driver}};hiveservertype=2;host={0};port={1};uid=hive;pwd=hive;schema=default;sockettimeout=60;applysspwithqueries=1;asyncexecpollinterval=100;authmech=2;autoreconnect=1;binarycolumnlength=32767;decimalcolumnscale=10;defaultstringcolumnlength=255;driverconfigtakeprecedence=0;enableasyncexec=0;enabletemptable=0;fastsqlprepare=0;gettableswithquery=1;invalidsessionautorecover=1;lcasesspkeyname=1;rowsfetchedperblock=10000;servicediscoverymode=0;showsystemtable=0;ssl=0;usenativequery=0;useonlysspi=0;useunicodesqlcharactertypes=0"
+       connectionString="Driver={{Microsoft Hive ODBC Driver}};hiveservertype=2;host={0};port={1};uid=;pwd=;schema=default;sockettimeout=60;applysspwithqueries=1;asyncexecpollinterval=100;authmech=2;autoreconnect=1;binarycolumnlength=32767;decimalcolumnscale=10;defaultstringcolumnlength=255;driverconfigtakeprecedence=0;enableasyncexec=0;enabletemptable=0;fastsqlprepare=0;gettableswithquery=1;invalidsessionautorecover=1;lcasesspkeyname=1;rowsfetchedperblock=10000;servicediscoverymode=0;showsystemtable=0;ssl=0;usenativequery=0;useonlysspi=0;useunicodesqlcharactertypes=0"
        providerName=".NET Framework Data Provider for ODBC"/>
     <add name="VmsDB"
-      connectionString="Data Source={0}\{1};Initial Catalog={2};Persist Security Info=True;User ID=sa;Password=TheSpiritOfVerint2007!"
+      connectionString="Data Source={0}\{1};Initial Catalog={2};Persist Security Info=True;User ID=;Password="
       providerName="System.Data.SqlClient" />
   </connectionStrings>
   <applicationSettings>

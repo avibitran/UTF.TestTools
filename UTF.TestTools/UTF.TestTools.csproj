@@ -81,9 +81,11 @@
     <Compile Include="Converters\NamedStringFormatter.cs" />
     <Compile Include="Converters\StringKeyCollectionJsonConverter.cs" />
     <Compile Include="Converters\XmlSerializableDictionary.cs" />
-    <Compile Include="DataRowExAttribute.cs" />
+    <Compile Include="Extensibility\DataRowExAttribute.cs" />
     <Compile Include="EndpointBindingType.cs" />
     <Compile Include="Extensibility\DataTestMethodExAttribute.cs" />
+    <Compile Include="Extensibility\Datasource.cs" />
+    <Compile Include="Extensibility\DynamicDatasourceAttribute.cs" />
     <Compile Include="Extensibility\TestClassExAttribute.cs" />
     <Compile Include="Extensibility\TestMethodExAttribute.cs" />
     <Compile Include="Extensions\AssertExtensions.cs" />
@@ -135,7 +137,7 @@
     <Compile Include="StringSearchTypeEnum.cs" />
     <Compile Include="TestCategories.cs" />
     <Compile Include="TestClassAbstract.cs" />
-    <Compile Include="TestClassDescriptionAttribute.cs" />
+    <Compile Include="Extensibility\TestClassDescriptionAttribute.cs" />
     <Compile Include="TestSystem.cs" />
     <Compile Include="TimerInvoker.cs" />
     <Compile Include="Timestamp.cs" />
@@ -143,6 +145,7 @@
   <ItemGroup>
     <Content Include="UTF.TestTools.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

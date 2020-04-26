@@ -9,6 +9,7 @@ using System.Xml;
 using System.Xml.Linq;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UTF.TestTools
 {
@@ -392,15 +393,23 @@ namespace UTF.TestTools
             return version;
         }
 
-        public static string GetConnectionString(string connectionStringName, params string[] args)
+        public static System.Configuration.ConnectionStringSettings GetConnectionString(string connectionStringName, params string[] args)
         {
-            string connectionString = Configuration.GetConnectionString(connectionStringName);
-            return String.Format(connectionString, args);
+            System.Configuration.ConnectionStringSettings settings;
+
+            settings = Configuration.GetConnectionString(connectionStringName);
+            settings.ConnectionString = String.Format(settings.ConnectionString, args);
+            return settings;    
         }
 
         public static string ExecutingLocation
         {
             get { return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); }
+        }
+
+        public static DataSourceAttribute GetDataSource(string dataSourceSettingName)
+        {
+            return Configuration.GetTestDataSource(dataSourceSettingName);
         }
         #endregion Methods
 
@@ -705,13 +714,30 @@ namespace UTF.TestTools
                 }
             }
 
-            public string GetConnectionString(string connectionStringName)
+            public System.Configuration.ConnectionStringSettings GetConnectionString(string connectionStringName)
             {
                 System.Configuration.ConnectionStringSettingsCollection connectionString;
 
                 connectionString = GetConnectionStringsSettingsSection();
 
-                return connectionString[connectionStringName].ConnectionString;
+                return connectionString[connectionStringName];
+            }
+
+            public Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceAttribute GetTestDataSource(string dataSourceSettingName)
+            {
+                Microsoft.VisualStudio.TestTools.UnitTesting.DataSourceElement element = null;
+                DataSourceAttribute dataSourceAttribute = null;
+
+                TestConfigurationSection configurationSection = GetTestConfigurationSection();
+                element = configurationSection.DataSources[dataSourceSettingName];
+
+                if(element != null)
+                {
+                    System.Configuration.ConnectionStringSettings connectionString = GetConnectionString(element.ConnectionString);
+                    dataSourceAttribute = new DataSourceAttribute(connectionString.ProviderName, connectionString.ConnectionString, element.DataTableName, (DataAccessMethod)Enum.Parse(typeof(DataAccessMethod), element.DataAccessMethod));
+                }
+
+                return dataSourceAttribute;
             }
             #endregion Exposed Methods
 
@@ -769,6 +795,11 @@ namespace UTF.TestTools
             private System.Configuration.ConnectionStringSettingsCollection GetConnectionStringsSettingsSection()
             {
                 return (System.Configuration.ConnectionStringSettingsCollection)GetConnectionStringSettings();
+            }
+
+            private Microsoft.VisualStudio.TestTools.UnitTesting.TestConfigurationSection GetTestConfigurationSection()
+            {
+                return (Microsoft.VisualStudio.TestTools.UnitTesting.TestConfigurationSection)_config.Sections["Microsoft.VisualStudio.TestTools"];
             }
             #endregion Private Methods
             #endregion Methods

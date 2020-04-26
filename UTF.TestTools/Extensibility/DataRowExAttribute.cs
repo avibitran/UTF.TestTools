@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UTF.TestTools
+namespace Microsoft.VisualStudio.TestTools.UnitTesting
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class DataRowExAttribute
@@ -73,7 +73,7 @@ namespace UTF.TestTools
             {
                 if (data != null)
                 {
-                    return string.Format(CultureInfo.CurrentCulture, "{0}, Data: {1}", methodInfo.Name, string.Join(",", data.AsEnumerable()));
+                    return string.Format(CultureInfo.CurrentCulture, "{0}, Data: {1}", methodInfo.Name, string.Join(", ", data.AsEnumerable()));
                 }
             }
 

@@ -12,10 +12,9 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     public enum DataDrivenTypeEnum
     {
         None,
-        DataSource,
         DynamicData,
         DataRow,
-        DataRowEx,
+        DynamicDataSource,
     }
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
@@ -27,7 +26,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
         private string _classDisplayName;
         List<TestResult> results = new List<TestResult>();
         private int _rowIndex = 0;
-        private IList<Attribute> _rows;
+        private IList<DataRowAttribute> _rows;
         #endregion Fields
 
         #region Ctor
@@ -46,7 +45,8 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
         public override TestResult[] Execute(ITestMethod testMethod)
         {
             TestResult[] iterationResults = null;
-            
+            DataDrivenTypeEnum dataDrivenType = DataDrivenTypeEnum.None;
+
             _testInfo = new TestInfo()
             {
                 // testMethod.MethodInfo.DeclaringType.FullName
@@ -60,7 +60,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
             {
                 _testInfo = ReporterManager.Get().AddTest(_testInfo);
                 _rowIndex = 0;
-                _rows = GetRows<DataRowAttribute>(testMethod.MethodInfo);
+                _rows = GetRows(testMethod.MethodInfo, out dataDrivenType);
             }
 
             TestInfo childTest = (TestInfo)_testInfo.DeepCopy();
@@ -143,18 +143,35 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
             return desc;
         }
 
-        private List<Attribute> GetRows<T>(MethodInfo methodInfo)
-            where T : Attribute
+        private List<DataRowAttribute> GetRows(MethodInfo methodInfo, out DataDrivenTypeEnum dataDrivenType)
         {
-            List<Attribute> rows = null;
+            List<DataRowAttribute> rows = null;
             Attribute[] dataRowAttribute;
 
-            dataRowAttribute = methodInfo.GetCustomAttributes<T>(false).ToArray()??null;
-            if (dataRowAttribute != null)
+            dataDrivenType = DataDrivenTypeEnum.None;
+
+            dataRowAttribute = methodInfo.GetCustomAttributes<DataRowAttribute>(false).ToArray()??null;
+            if ((dataRowAttribute != null) && (dataRowAttribute.Length > 0))
             {
-                rows = new List<Attribute>();
+                dataDrivenType = DataDrivenTypeEnum.DataRow;
+                rows = new List<DataRowAttribute>();
+
                 foreach (Attribute attrib in dataRowAttribute)
-                    rows.Add((T)attrib);
+                    rows.Add((DataRowAttribute)attrib);
+            }
+
+            dataRowAttribute = methodInfo.GetCustomAttributes<DynamicDatasourceAttribute>(false).ToArray() ?? null;
+            if ((dataRowAttribute != null) && (dataRowAttribute.Length > 0))
+            {
+                dataDrivenType = DataDrivenTypeEnum.DynamicDataSource;
+                rows = new List<DataRowAttribute>();
+
+                foreach (object[] row in ((DynamicDatasourceAttribute)dataRowAttribute[0]).GetData(methodInfo))
+                {
+                    DataRowAttribute attrib = new DataRowAttribute(row);
+                    attrib.DisplayName = ((DynamicDatasourceAttribute)dataRowAttribute[0]).GetDisplayName(methodInfo, row);
+                    rows.Add(attrib);
+                }
             }
 
             return rows;

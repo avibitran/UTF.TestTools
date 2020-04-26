@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace UTF.TestTools
+namespace Microsoft.VisualStudio.TestTools.UnitTesting
 {
     [System.AttributeUsage(System.AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public sealed class TestClassDescriptionAttribute
