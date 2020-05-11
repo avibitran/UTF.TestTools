@@ -9,7 +9,7 @@ using System.ServiceModel.Description;
 
 namespace UTF.TestTools
 {
-    public class ChannelFactoryExtension<T>
+    public class ChannelFactoryEx<T>
         : ChannelFactory<T>
     {
         #region Fields
@@ -20,7 +20,7 @@ namespace UTF.TestTools
         #endregion Fields
 
         #region Ctor
-        public ChannelFactoryExtension(string configurationPath, string configurationName = null, Uri uri = null)
+        public ChannelFactoryEx(string configurationPath, string configurationName = null, Uri uri = null)
             : base(typeof(T))
         {
             _configurationPath = configurationPath;
@@ -29,7 +29,7 @@ namespace UTF.TestTools
             InitializeEndpoint((string)null, null);
         }
 
-        public ChannelFactoryExtension(string configurationPath, EndpointBindingTypeEnum endpointBindingType = EndpointBindingTypeEnum.Unknown, Uri uri = null)
+        public ChannelFactoryEx(string configurationPath, EndpointBindingTypeEnum endpointBindingType = EndpointBindingTypeEnum.Unknown, Uri uri = null)
             : base(typeof(T))
         {
             _configurationPath = configurationPath;

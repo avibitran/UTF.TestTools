@@ -31,20 +31,20 @@ namespace UTF.TestTools.Reporters
         public void GenerateReport(string testDeploymentDir, string inputFile)
         { }
 
-        public void ReportStep(StepInfo step, string screenshotTitle = "", string screenshotFilePath = null)
+        public static string CreateStepReport(StepInfo step, string screenshotTitle = "", string screenshotFilePath = null)
         {
             StringBuilder message = new StringBuilder();
             StringBuilder numberedLines;
 
             message.AppendLine(new String('-', ConsoleReporter.ConsoleWidth));
             message.AppendLine(String.Format("STEP {0} [{1}]: Description = {2}", (String.IsNullOrEmpty(step.Name)) ? "" : step.Name, Timestamp.UnixTimestampToDateTime(step.StartTime).ToString(ConsoleReporter.TimeFormat), step.Description));
-            
+
             numberedLines = NormalizeListToString(step.Expected);
             message.AppendLine($"Expected = {numberedLines.ToString()}");
 
             numberedLines = NormalizeListToString(step.Actual);
             message.AppendLine($"Actual = {numberedLines.ToString()}");
-            
+
             message.AppendLine(String.Format("Outcome = {0}", Enum.GetName(typeof(StepStatusEnum), step.Outcome)));
 
             if (!String.IsNullOrEmpty(screenshotFilePath))
@@ -65,7 +65,34 @@ namespace UTF.TestTools.Reporters
 
             message.AppendLine(new String('-', ConsoleReporter.ConsoleWidth));
 
-            Logger.LogMessage(message.ToString());
+            return message.ToString();
+        }
+
+        public void ReportStep(StepInfo step, string screenshotTitle = "", string screenshotFilePath = null)
+        {
+            //StringBuilder message = new StringBuilder();
+            //StringBuilder numberedLines;
+
+            //message.AppendLine(new String('-', ConsoleReporter.ConsoleWidth));
+            //message.AppendLine(String.Format("STEP {0} [{1}]: Description = {2}", (String.IsNullOrEmpty(step.Name)) ? "" : step.Name, Timestamp.UnixTimestampToDateTime(step.StartTime).ToString(ConsoleReporter.TimeFormat), step.Description));
+            
+            //numberedLines = NormalizeListToString(step.Expected);
+            //message.AppendLine($"Expected = {numberedLines.ToString()}");
+
+            //numberedLines = NormalizeListToString(step.Actual);
+            //message.AppendLine($"Actual = {numberedLines.ToString()}");
+            
+            //message.AppendLine(String.Format("Outcome = {0}", Enum.GetName(typeof(StepStatusEnum), step.Outcome)));
+
+            //if (!String.IsNullOrEmpty(screenshotFilePath))
+            //    message.AppendLine(String.Format("Screenshot [{1}]= {0}", screenshotFilePath, screenshotTitle));
+
+            //numberedLines = NormalizeListToString(step.Messages);
+            //message.AppendLine($"Messages: {numberedLines.ToString()}");
+
+            //message.AppendLine(new String('-', ConsoleReporter.ConsoleWidth));
+
+            Logger.LogMessage(CreateStepReport(step, screenshotTitle, screenshotFilePath));
         }
 
         public void AddTest(TestInfo test)
@@ -150,7 +177,7 @@ namespace UTF.TestTools.Reporters
         #endregion IReportService interface Implementation
 
         #region Private Methods
-        private StringBuilder NormalizeListToString(List<string> list)
+        private static StringBuilder NormalizeListToString(List<string> list)
         {
             StringBuilder numberedLines;
 

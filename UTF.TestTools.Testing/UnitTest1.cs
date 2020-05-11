@@ -86,6 +86,26 @@ namespace UTF.TestTools.Testing
             step = Report.Test.AddStep("Step 4", "The step passed");
             Assert.That.ReportIsTrue(input, step, "The step didn't pass", "The step did pass");
         }
+
+        [DataTestMethod]
+        [Description("Description of UTF.TestTools.Testing.UnitTest1.TestMethod15")]
+        [TestCategory(TestType.INTEGRATION_TEST)]
+        [TestCategory(TestStatus.COMPLETED)]
+        [TestCategory(TestOwner.ABitran)]
+        [DynamicData("TestMethod15_Datasource", typeof(Datasources), DynamicDataSourceType.Property, DynamicDataDisplayName = "TestMethod15_DisplayName", DynamicDataDisplayNameDeclaringType = typeof(Datasources))]
+        public void TestMethod15(int rowIndex, bool input)
+        {
+            StepInfo step;
+
+            Report.Test.AddStep("Running Test", $"Running {TestContext.TestName}");
+
+            Report.Test.AddStep("Step 2", "The step passed", "The step did pass", StepStatusEnum.Pass);
+
+            Report.Test.AddStep("Step 3", "The step passed", "The step has warning", StepStatusEnum.Warning);
+
+            step = Report.Test.AddStep("Step 4", "The step passed");
+            Assert.That.ReportIsTrue(input, step, "The step didn't pass", "The step did pass");
+        }
         #endregion Test Methods
 
         #region Test Attributes

@@ -174,6 +174,22 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
                 }
             }
 
+            dataRowAttribute = methodInfo.GetCustomAttributes<DynamicDataAttribute>(false).ToArray() ?? null;
+            if ((dataRowAttribute != null) && (dataRowAttribute.Length > 0))
+            {
+                dataDrivenType = DataDrivenTypeEnum.DynamicData;
+                rows = new List<DataRowAttribute>();
+
+                foreach (object[] row in ((DynamicDataAttribute)dataRowAttribute[0]).GetData(methodInfo))
+                {
+                    DataRowAttribute attrib = new DataRowAttribute(row);
+                    attrib.DisplayName = ((DynamicDataAttribute)dataRowAttribute[0]).GetDisplayName(methodInfo, row);
+                    rows.Add(attrib);
+                }
+                ((DynamicDataAttribute)dataRowAttribute[0]).DynamicDataDisplayNameDeclaringType.GetMethod($"BuildDatasource").Invoke(null, new object[] { $"{methodInfo.DeclaringType.FullName}.{methodInfo.Name}" });
+
+            }
+
             return rows;
         }
         #endregion Private Methods

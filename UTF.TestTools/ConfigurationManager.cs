@@ -251,7 +251,7 @@ namespace UTF.TestTools
                 return String.Format(Configuration.GetServiceUrl(serviceName), uriSegments);
         }
 
-        public static ChannelFactoryExtension<T> GetServiceChannel<T>(string endpointName, params string[] uriSegments)
+        public static ChannelFactoryEx<T> GetServiceChannel<T>(string endpointName, params string[] uriSegments)
         {
             return Configuration.GetServiceChannel<T>(endpointName, uriSegments);
         }
@@ -526,10 +526,10 @@ namespace UTF.TestTools
                 return servicesSection.Settings.Get(serviceName).Value.ValueXml.InnerText;
             }
 
-            public ChannelFactoryExtension<T> GetServiceChannel<T>(string endpointName, params string[] uriSegments)
+            public ChannelFactoryEx<T> GetServiceChannel<T>(string endpointName, params string[] uriSegments)
             {
                 Uri uri = null;
-                ChannelFactoryExtension<T> channelFactory = null;
+                ChannelFactoryEx<T> channelFactory = null;
 
                 if (uriSegments.Length == 0)
                 {
@@ -542,7 +542,7 @@ namespace UTF.TestTools
                     catch (Exception e) { throw new InvalidOperationException($"failed to format endpoint name: \"{endpointName}\" service url.", e); }
                 }
 
-                try { channelFactory = new ChannelFactoryExtension<T>(_configFile, endpointName, uri); }
+                try { channelFactory = new ChannelFactoryEx<T>(_configFile, endpointName, uri); }
                 catch (Exception e) { throw new InvalidOperationException($"failed to create ChannelFactory for endpoint name: \"{endpointName}\".", e); }
 
                 return channelFactory;

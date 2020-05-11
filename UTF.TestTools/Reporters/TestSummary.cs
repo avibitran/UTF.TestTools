@@ -7,7 +7,7 @@ using UTF.TestTools.Reporters;
 
 namespace UTF.TestTools
 {
-    [JsonObject()]
+    [JsonObject]
     [XmlType(TypeName = "testSummary")]
     [Serializable]
     public class TestSummary

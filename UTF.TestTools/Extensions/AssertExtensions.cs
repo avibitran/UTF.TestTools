@@ -56,23 +56,23 @@ namespace UTF.TestTools
 
             if(!continueOnError)
             {
-                StringBuilder message = new StringBuilder();
-                StringBuilder numberedLines;
+                //StringBuilder message = new StringBuilder();
+                //StringBuilder numberedLines;
 
-                message.AppendLine(String.Format("STEP {0} [{1}]: Description = {2}", (String.IsNullOrEmpty(step.Name)) ? "" : step.Name, Timestamp.UnixTimestampToDateTime(step.StartTime).ToString(ConsoleReporter.TimeFormat), step.Description));
+                //message.AppendLine(String.Format("STEP {0} [{1}]: Description = {2}", (String.IsNullOrEmpty(step.Name)) ? "" : step.Name, Timestamp.UnixTimestampToDateTime(step.StartTime).ToString(ConsoleReporter.TimeFormat), step.Description));
 
-                numberedLines = NormalizeListToString(step.Expected);
-                message.AppendLine($"Expected = {numberedLines.ToString()}");
+                //numberedLines = NormalizeListToString(step.Expected);
+                //message.AppendLine($"Expected = {numberedLines.ToString()}");
 
-                numberedLines = NormalizeListToString(step.Actual);
-                message.AppendLine($"Actual = {numberedLines.ToString()}");
+                //numberedLines = NormalizeListToString(step.Actual);
+                //message.AppendLine($"Actual = {numberedLines.ToString()}");
 
-                message.AppendLine(String.Format("Outcome = {0}", Enum.GetName(typeof(StepStatusEnum), step.Outcome)));
+                //message.AppendLine(String.Format("Outcome = {0}", Enum.GetName(typeof(StepStatusEnum), step.Outcome)));
                 
-                numberedLines = NormalizeListToString(step.Messages);
-                message.AppendLine($"Messages: {numberedLines.ToString()}");
+                //numberedLines = NormalizeListToString(step.Messages);
+                //message.AppendLine($"Messages: {numberedLines.ToString()}");
                 
-                throw new AssertFailedException(message.ToString());
+                throw new AssertFailedException(ConsoleReporter.CreateStepReport(step));
             }
         }
 

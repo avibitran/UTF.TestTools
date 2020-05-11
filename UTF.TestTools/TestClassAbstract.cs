@@ -116,15 +116,6 @@ namespace UTF.TestTools
                     return desc;
                 }
 
-                attributes = methodInfo.GetCustomAttributes(typeof(DataRowExAttribute), false);
-                if ((attributes != null) && (attributes.Length > 0))
-                {
-                    desc = Array.Find<DataRowExAttribute>((DataRowExAttribute[])attributes, i => ((DataRowExAttribute)i).Iteration.Equals(iteration)).DisplayName;
-                    //desc = ((DataRowExAttribute)attributes.Find(i => ((DataRowExAttribute)i).Iteration.Equals(iteration))).DisplayName;
-
-                    return desc;
-                }
-
                 attributes = methodInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
                 if ((attributes != null) && (attributes.Length > 0))
                     desc = ((DescriptionAttribute)attributes[0]).Description;
@@ -317,7 +308,7 @@ namespace UTF.TestTools
             set { _testContext = value; }
         }
 
-        private static ReporterManager _reporter;
+        //private static ReporterManager _reporter;
         public static ReporterManager Report
         {
             get { return ReporterManager.Get(); }

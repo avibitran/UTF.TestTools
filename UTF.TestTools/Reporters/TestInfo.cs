@@ -354,7 +354,7 @@ namespace UTF.TestTools
                 Name = this._testInfo.Name,
                 Categories = (this._testInfo.Categories.Count > 0) ? String.Join(", ", this._testInfo.Categories) : "",
                 Description = this._testInfo.Description,
-                ClassName = this._classInfo.Name,
+                ClassName = this._classInfo.FullName,
                 ClassDescription = this._classInfo.Description,
                 Assembly = this._classInfo.Assembly,
                 StartTime = this.StartTime,

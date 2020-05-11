@@ -109,7 +109,10 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
 
         public string GetDisplayName(MethodInfo methodInfo, object[] data)
         {
-            return string.Format(CultureInfo.CurrentCulture, "{0}, Data: {1}", methodInfo.Name, string.Join(", ", data.AsEnumerable()));
+            if(String.IsNullOrEmpty(this.DynamicDataDisplayName))
+                return string.Format(CultureInfo.CurrentCulture, "{0}, Data: {1}", methodInfo.Name, string.Join(", ", data.AsEnumerable()));
+            else
+                return string.Format(CultureInfo.CurrentCulture, "{0}, Data: {1}", this.DynamicDataDisplayName, string.Join(", ", data.AsEnumerable()));
         }
 
         #region Private Methods
@@ -140,6 +143,8 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
         #endregion Methods
 
         #region Properties
+        public string DynamicDataDisplayName { get; set; }
+
         /// <summary>
         /// Gets a value representing the data provider of the data source.
         /// </summary>

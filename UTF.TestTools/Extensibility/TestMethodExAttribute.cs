@@ -38,6 +38,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
 
             if (_testInfo == null)
             {
+                //_testInfo = ((ITestClass)Activator.CreateInstance(Type.GetType($"{testMethod.TestClassName},{testMethod.MethodInfo.Module.Assembly.FullName}"))).GetTestInfo($"{testMethod.TestClassName}.{testMethod.TestMethodName}");
                 _testInfo = new TestInfo()
                 {
                     // testMethod.MethodInfo.DeclaringType.FullName
@@ -125,6 +126,54 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
             }
 
             return desc;
+        }
+
+        private List<DataRowAttribute> GetRows(MethodInfo methodInfo, out DataDrivenTypeEnum dataDrivenType)
+        {
+            List<DataRowAttribute> rows = null;
+            Attribute[] dataRowAttribute;
+
+            dataDrivenType = DataDrivenTypeEnum.None;
+
+            dataRowAttribute = methodInfo.GetCustomAttributes<DataRowAttribute>(false).ToArray() ?? null;
+            if ((dataRowAttribute != null) && (dataRowAttribute.Length > 0))
+            {
+                dataDrivenType = DataDrivenTypeEnum.DataRow;
+                rows = new List<DataRowAttribute>();
+
+                foreach (Attribute attrib in dataRowAttribute)
+                    rows.Add((DataRowAttribute)attrib);
+            }
+
+            dataRowAttribute = methodInfo.GetCustomAttributes<DynamicDatasourceAttribute>(false).ToArray() ?? null;
+            if ((dataRowAttribute != null) && (dataRowAttribute.Length > 0))
+            {
+                dataDrivenType = DataDrivenTypeEnum.DynamicDataSource;
+                rows = new List<DataRowAttribute>();
+
+                foreach (object[] row in ((DynamicDatasourceAttribute)dataRowAttribute[0]).GetData(methodInfo))
+                {
+                    DataRowAttribute attrib = new DataRowAttribute(row);
+                    attrib.DisplayName = ((DynamicDatasourceAttribute)dataRowAttribute[0]).GetDisplayName(methodInfo, row);
+                    rows.Add(attrib);
+                }
+            }
+
+            dataRowAttribute = methodInfo.GetCustomAttributes<DynamicDataAttribute>(false).ToArray() ?? null;
+            if ((dataRowAttribute != null) && (dataRowAttribute.Length > 0))
+            {
+                dataDrivenType = DataDrivenTypeEnum.DynamicData;
+                rows = new List<DataRowAttribute>();
+
+                foreach (object[] row in ((DynamicDataAttribute)dataRowAttribute[0]).GetData(methodInfo))
+                {
+                    DataRowAttribute attrib = new DataRowAttribute(row);
+                    attrib.DisplayName = ((DynamicDataAttribute)dataRowAttribute[0]).GetDisplayName(methodInfo, row);
+                    rows.Add(attrib);
+                }
+            }
+
+            return rows;
         }
         #endregion Private Methods
         #endregion Methods

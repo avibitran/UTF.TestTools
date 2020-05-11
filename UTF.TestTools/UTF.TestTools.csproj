@@ -81,15 +81,13 @@
     <Compile Include="Converters\NamedStringFormatter.cs" />
     <Compile Include="Converters\StringKeyCollectionJsonConverter.cs" />
     <Compile Include="Converters\XmlSerializableDictionary.cs" />
-    <Compile Include="Extensibility\DataRowExAttribute.cs" />
     <Compile Include="EndpointBindingType.cs" />
     <Compile Include="Extensibility\DataTestMethodExAttribute.cs" />
-    <Compile Include="Extensibility\Datasource.cs" />
     <Compile Include="Extensibility\DynamicDatasourceAttribute.cs" />
     <Compile Include="Extensibility\TestClassExAttribute.cs" />
     <Compile Include="Extensibility\TestMethodExAttribute.cs" />
     <Compile Include="Extensions\AssertExtensions.cs" />
-    <Compile Include="ChannelFactoryExtension.cs" />
+    <Compile Include="ChannelFactoryEx.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\JObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -109,6 +107,7 @@
     <Compile Include="Reporters\Attachment.cs" />
     <Compile Include="Reporters\ClassObject.cs" />
     <Compile Include="Reporters\ConsoleReporter.cs" />
+    <Compile Include="Reporters\FileInfo.cs" />
     <Compile Include="Reporters\HtmlReporter.cs" />
     <Compile Include="Reporters\IReporter.cs" />
     <Compile Include="Reporters\IReportService.cs" />
@@ -134,6 +133,7 @@
     <Compile Include="Reporters\TestSummary.cs" />
     <Compile Include="Reporters\VerificationPoint.cs" />
     <Compile Include="Reporters\XmlReporter.cs" />
+    <Compile Include="SerializableKeyValue.cs" />
     <Compile Include="StringSearchTypeEnum.cs" />
     <Compile Include="TestCategories.cs" />
     <Compile Include="TestClassAbstract.cs" />
