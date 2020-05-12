@@ -19,6 +19,9 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
         public static readonly DataAccessMethod DefaultDataAccessMethod = DataAccessMethod.Random;
         public static readonly string DefaultProviderName = "System.Data.OleDb";
         private DataSourceAttribute _dataSource;
+        List<string> _displayName;
+        private int _rowIndex = 0;
+        private List<object[]> _rows;
         #endregion Fields
 
         #region Ctor
@@ -68,51 +71,76 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
         #region Methods
         public IEnumerable<object[]> GetData(MethodInfo methodInfo)
         {
-            List<object[]> rows = null;
-
-            DbProviderFactory providerFactory = DbProviderFactories.GetFactory(_dataSource.ProviderInvariantName);
-
-            using (DbConnection connection = providerFactory.CreateConnection())
+            if (_rows == null)
             {
-                connection.ConnectionString = _dataSource.ConnectionString;
-                
-                using (DbCommand command = connection.CreateCommand())
+                DbProviderFactory providerFactory = DbProviderFactories.GetFactory(_dataSource.ProviderInvariantName);
+
+                using (DbConnection connection = providerFactory.CreateConnection())
                 {
-                    command.CommandText = $"SELECT * FROM [{_dataSource.TableName}]";
-                    command.Connection.Open();
+                    connection.ConnectionString = _dataSource.ConnectionString;
 
-                    using (DbDataReader reader = command.ExecuteReader())
+                    using (DbCommand command = connection.CreateCommand())
                     {
-                        if(reader.HasRows)
+                        command.CommandText = $"SELECT * FROM [{_dataSource.TableName}]";
+                        command.Connection.Open();
+
+                        using (DbDataReader reader = command.ExecuteReader())
                         {
-                            ParameterInfo[] parameters = methodInfo.GetParameters();
-                            rows = new List<object[]>();
-
-                            while (reader.Read())
+                            if (reader.HasRows)
                             {
-                                List<object> row = new List<object>();
+                                ParameterInfo[] parameters = methodInfo.GetParameters();
+                                _rows = new List<object[]>();
 
-                                for(int i = 0; i < parameters.Length; i++)
+                                while (reader.Read())
                                 {
-                                    row.Add(Convert.ChangeType(reader[i], parameters[i].ParameterType));
-                                }
+                                    List<object> row = new List<object>();
 
-                                rows.Add(row.ToArray());
+                                    for (int i = 0; i <= parameters.Length; i++)
+                                    {
+                                        if (i == this.DisplayNameRowIndex)
+                                        {
+                                            if (_displayName == null)
+                                                _displayName = new List<string>();
+
+                                            _displayName.Add(Convert.ToString(reader[i]));
+                                        }
+                                        else
+                                        {
+                                            if (i < this.DisplayNameRowIndex)
+                                                row.Add(Convert.ChangeType(reader[i], parameters[i].ParameterType));
+                                            else
+                                                row.Add(Convert.ChangeType(reader[i], parameters[i - 1].ParameterType));
+                                        }
+                                    }
+
+                                    _rows.Add(row.ToArray());
+                                }
                             }
                         }
                     }
                 }
             }
 
-            return rows;
+            return _rows;
         }
 
         public string GetDisplayName(MethodInfo methodInfo, object[] data)
         {
-            if(String.IsNullOrEmpty(this.DynamicDataDisplayName))
-                return string.Format(CultureInfo.CurrentCulture, "{0}, Data: {1}", methodInfo.Name, string.Join(", ", data.AsEnumerable()));
+            string displayName;
+
+            if (this.DisplayNameRowIndex >= 0)
+            {
+                if (_rowIndex >= _rows.Count)
+                    _rowIndex = 0;
+
+                displayName = string.Format(CultureInfo.CurrentCulture, "{0}", _displayName[_rowIndex]);
+            }
             else
-                return string.Format(CultureInfo.CurrentCulture, "{0}, Data: {1}", this.DynamicDataDisplayName, string.Join(", ", data.AsEnumerable()));
+                displayName = string.Format(CultureInfo.CurrentCulture, "{0}, Data: {1}", methodInfo.Name, string.Join(", ", data.AsEnumerable()));
+
+            ++_rowIndex;
+
+            return displayName;
         }
 
         #region Private Methods
@@ -143,7 +171,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
         #endregion Methods
 
         #region Properties
-        public string DynamicDataDisplayName { get; set; }
+        public int DisplayNameRowIndex { get; set; } = -1;
 
         /// <summary>
         /// Gets a value representing the data provider of the data source.

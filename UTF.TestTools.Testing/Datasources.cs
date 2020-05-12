@@ -49,8 +49,8 @@ namespace UTF.TestTools.Testing
                     else
                     {
                         TestMethod15_Datasource = new[] {
-                            new object[]{ 1, true },
-                            new object[]{ 2, false }
+                            new object[]{ true },
+                            new object[]{ false }
                         };
 
                         _displayName.Add(name

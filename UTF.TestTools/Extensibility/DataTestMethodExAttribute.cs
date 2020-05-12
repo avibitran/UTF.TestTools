@@ -165,7 +165,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
             {
                 dataDrivenType = DataDrivenTypeEnum.DynamicDataSource;
                 rows = new List<DataRowAttribute>();
-
+                
                 foreach (object[] row in ((DynamicDatasourceAttribute)dataRowAttribute[0]).GetData(methodInfo))
                 {
                     DataRowAttribute attrib = new DataRowAttribute(row);

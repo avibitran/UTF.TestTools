@@ -867,7 +867,7 @@ namespace UTF.TestTools.Reporters
 
             tableRow.Attributes.Add("class", "rTableRow");
             // Adding Test step table: 
-            tableRow.Controls.Add(new LiteralControl($"<div class=\"rTableCell\">{Int32.Parse(test.Id)}</div>"));
+            tableRow.Controls.Add(new LiteralControl($"<div class=\"rTableCell\">{Int32.Parse(test.Id, System.Globalization.NumberStyles.HexNumber)}</div>"));
             tableRow.Controls.Add(new LiteralControl($"<div class=\"rTableCell\">{test.Name}</div>"));
             tableRow.Controls.Add(new LiteralControl($"<div class=\"rTableCell step{Enum.GetName(typeof(StepStatusEnum), test.Outcome)}\">{test.Outcome}</div>"));
             tableRow.Controls.Add(new LiteralControl($"<div class=\"rTableCell step{Enum.GetName(typeof(StepStatusEnum), StepStatusEnum.Pass)}\">{test.Status.Pass}</div>"));

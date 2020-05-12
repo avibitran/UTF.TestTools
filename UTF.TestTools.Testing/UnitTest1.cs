@@ -72,8 +72,8 @@ namespace UTF.TestTools.Testing
         [TestCategory(TestType.INTEGRATION_TEST)]
         [TestCategory(TestStatus.COMPLETED)]
         [TestCategory(TestOwner.ABitran)]
-        [DynamicDatasource("LoginTestsDS")]
-        public void TestMethod14(int rowIndex, bool input)
+        [DynamicDatasource("LoginTestsDS", DisplayNameRowIndex = 0)]
+        public void TestMethod14(bool input)
         {
             StepInfo step;
 
@@ -93,7 +93,7 @@ namespace UTF.TestTools.Testing
         [TestCategory(TestStatus.COMPLETED)]
         [TestCategory(TestOwner.ABitran)]
         [DynamicData("TestMethod15_Datasource", typeof(Datasources), DynamicDataSourceType.Property, DynamicDataDisplayName = "TestMethod15_DisplayName", DynamicDataDisplayNameDeclaringType = typeof(Datasources))]
-        public void TestMethod15(int rowIndex, bool input)
+        public void TestMethod15(bool input)
         {
             StepInfo step;
 
