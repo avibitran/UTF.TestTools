@@ -66,7 +66,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
             TestInfo childTest = (TestInfo)_testInfo.DeepCopy();
             childTest.Iteration = ++_rowIndex;
             childTest.IsChild = true;
-            childTest.Test.Description = String.Copy(((DataRowAttribute)_rows[_rowIndex - 1]).DisplayName ?? _testInfo.Test.Description);
+            childTest.Test.Description = String.Copy(((DataRowAttribute)_rows[_rowIndex - 1]).DisplayName ?? $"{_testInfo.Test.Description} (Row #{_rowIndex})");
 
             childTest = ReporterManager.Get().AddTestNode(childTest);
 
@@ -143,7 +143,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
             return desc;
         }
 
-        private List<DataRowAttribute> GetRows(MethodInfo methodInfo, out DataDrivenTypeEnum dataDrivenType)
+        internal List<DataRowAttribute> GetRows(MethodInfo methodInfo, out DataDrivenTypeEnum dataDrivenType)
         {
             List<DataRowAttribute> rows = null;
             Attribute[] dataRowAttribute;
@@ -196,7 +196,10 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
         #endregion Methods
 
         #region Properties
-
+        public IList<DataRowAttribute> DataRows
+        {
+            get { return _rows; }
+        }
         #endregion Properties
     }
 }

@@ -149,7 +149,8 @@ p {
 
 .rTable {
     display: table;
-    width: 150%;
+    min-width: 100%;
+    max-width: 120%;
 }
 
 .rTableRow {
@@ -161,7 +162,7 @@ div.rTableCell {
     padding: 3px 3px;
     border: 1px solid #999999;
     white-space: pre-line;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 a.rTableCell {
@@ -173,8 +174,7 @@ a.rTableCell {
     padding: 3px 0px 3px 3px;
     border: 1px solid #999999;
     text-align: left;
-    /*font-size: 20px;*/
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
 }
 
@@ -193,7 +193,7 @@ div#testRunSummary {
 div#divTablePlaceholder {
     overflow-x: auto;
     /* float: */
-    min-width: 90%;
+    min-width: 100%;
 }
 
 div.rTableCell > img {

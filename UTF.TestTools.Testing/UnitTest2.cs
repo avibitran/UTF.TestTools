@@ -25,6 +25,8 @@ namespace UTF.TestTools.Testing
 
             step = new StepInfo("Step 2", "The step passed", "The step did pass", StepStatusEnum.Pass);
             Report.Test.AddStep(step);
+
+            ExecuteTest("UTF.TestTools.UITesting.UnitTest1.TestMethod11", "UTF.TestTools.UITesting.dll");
         }
 
         [TestMethod]
